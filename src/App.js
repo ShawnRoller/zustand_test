@@ -1,22 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import Subcomponent from './Subcomponent';
+import create from "zustand";
+
+export const useStore = create(set => ({
+  bears: 0,
+  increasePopulation: () => set(state => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 })
+}));
+
+export const useSharkStore = create(set => ({
+  sharks: 0,
+  increasePopulation: () => set(state => ({ sharks: state.sharks + 1 })),
+  removeAllSharks: () => set({ sharks: 0 })
+}));
 
 function App() {
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Subcomponent />
       </header>
     </div>
   );
