@@ -15,6 +15,11 @@ export const useSharkStore = create(set => ({
   removeAllSharks: () => set({ sharks: 0 })
 }));
 
+export const useConfigStore = create(set => ({
+  environment: "QA1",
+  setEnvironment: (newEnvironment) => set({ environment: newEnvironment })
+}));
+
 function App() {
 
   return (

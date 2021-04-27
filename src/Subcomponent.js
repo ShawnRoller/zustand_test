@@ -1,5 +1,5 @@
 import './App.css';
-import { useStore, useSharkStore } from "./App";
+import { useStore, useSharkStore, useConfigStore } from "./App";
 
 function Subcomponent() {
   const bears = useStore(state => state.bears);
@@ -10,6 +10,11 @@ function Subcomponent() {
   const sharks = useSharkStore(state => state.sharks);
   const increaseSharkPopulation = useSharkStore(state => state.increasePopulation);
   const removeAllSharks = useSharkStore(state => state.removeAllSharks);
+
+  // Environment
+  const environment = useConfigStore(state => state.environment);
+  const setEnvironment = useConfigStore(state => state.setEnvironment);
+  const nextEnvironment = environment === "QA1" ? "Prod" : "QA1";
 
   return (
     <div>
@@ -23,6 +28,8 @@ function Subcomponent() {
       <button onClick={increaseSharkPopulation}>one up</button>
       <h1>{sharks} sharks around here</h1>
       <button onClick={removeAllSharks}>Remove them sharks!</button>
+      <h1>current environment: {environment}</h1>
+      <button onClick={() => setEnvironment(nextEnvironment)}>Change the environment</button>
     </div>
   );
 }
