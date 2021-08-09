@@ -20,6 +20,11 @@ export const useConfigStore = create(set => ({
   setEnvironment: (newEnvironment) => set({ environment: newEnvironment })
 }));
 
+export const useConfig = () => {
+  const store = useConfigStore();
+  return store;
+};
+
 function App() {
 
   return (

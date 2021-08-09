@@ -1,5 +1,5 @@
 import './App.css';
-import { useStore, useSharkStore, useConfigStore } from "./App";
+import { useStore, useSharkStore, useConfigStore, useConfig } from "./App";
 
 function Subcomponent() {
   const bears = useStore(state => state.bears);
@@ -12,8 +12,13 @@ function Subcomponent() {
   const removeAllSharks = useSharkStore(state => state.removeAllSharks);
 
   // Environment
-  const environment = useConfigStore(state => state.environment);
-  const setEnvironment = useConfigStore(state => state.setEnvironment);
+  // const environment = useConfigStore(state => state.environment);
+  // const setEnvironment = useConfigStore(state => state.setEnvironment);
+  // const nextEnvironment = environment === "QA1" ? "Prod" : "QA1";
+
+  const configStore = useConfig();
+  const environment = configStore.environment;
+  const setEnvironment = configStore.setEnvironment;
   const nextEnvironment = environment === "QA1" ? "Prod" : "QA1";
 
   return (
